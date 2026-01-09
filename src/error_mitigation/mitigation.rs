@@ -5,6 +5,39 @@
 //! - Probabilistic Error Cancellation (PEC)
 //! - Clifford Data Regression (CDR)
 //! - Symmetry verification
+//!
+//! ## 🎯 Why is this used?
+//! In the NISQ (Noisy Intermediate-Scale Quantum) era, we do not yet have 
+//! enough qubits for full error correction. Error mitigation allows us 
+//! to extract useful information from noisy results by using clever 
+//! classical post-processing or circuit scaling. It significantly improves 
+//! the precision of expectation value estimations on real hardware.
+//!
+//! ## ⚙️ How it works?
+//! - **Zero Noise Extrapolation (ZNE)**: Scales the noise in the circuit (e.g., 
+//!   by replacing $G \rightarrow G G^\dagger G$) and extrapolates the noisy 
+//!   results back to the theoretical "zero noise" limit.
+//! - **Probabilistic Error Cancellation (PEC)**: Decomposes the ideal gate 
+//!   into a quasi-probability distribution of noisy operations and uses 
+//!   random sampling to "cancel out" noise effects on average.
+//! - **Clifford Data Regression (CDR)**: Uses classically simulable Clifford 
+//!   circuits to "train" a noise model and correct the results of the 
+//!   target non-Clifford circuit.
+//!
+//! ## 📍 Where to apply this?
+//! - **NISQ Experiments**: Boosting the accuracy of VQE or QAOA results.
+//! - **Benchmarking**: Understanding the noise profile of a specific QPU.
+//! - **State Verification**: Using post-selection to filter out states that 
+//!   break known physical symmetries.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - ZNE: Requires running $M$ circuits at different noise scales.
+//!     - PEC: Causes an exponential increase in the number of shots needed.
+//! - **Trade-off**: Mitigation trades classical compute time and measurement 
+//!   counts for reduced bias in the final result.
+//! - **Requirements**: PEC requires a precise characterization of the hardware 
+//!   noise channel (Gate Set Tomography).
 
 use std::f64::consts::PI;
 use crate::gates::core::Gate;

@@ -6,6 +6,37 @@
 //! - State preparation (Grover-Rudolph, Dicke states)
 //! - Linear reversible synthesis
 //! - Boolean function synthesis
+//!
+//! ## 🎯 Why is this used?
+//! General-purpose quantum programs often start from mathematical descriptions 
+//! like an $N \times N$ unitary matrix or a desired probability distribution. 
+//! This module is used to convert those high-level descriptions into 
+//! hardware-executable gate sequences using state-of-the-art decomposition 
+//! techniques.
+//!
+//! ## ⚙️ How it works?
+//! - **Quantum Shannon Decomposition (QSD)**: Recursively decomposes an $n$-qubit 
+//!   unitary into $(n-1)$-qubit unitaries and multiplexed rotations, minimizing 
+//!   the number of CNOT gates.
+//! - **Amplitude Encoding**: Implements an efficient tree-based synthesis to 
+//!   encode $2^n$ classical data points into the amplitudes of an $n$-qubit state.
+//! - **Dicke/W-State Preparation**: Uses specialized gate patterns to prepare 
+//!   high-entanglement states with specific Hamming weights in their basis states.
+//! - **Boolean Synthesis**: Converts classical reversible circuits (ESOP/EXOR forms) 
+//!   into quantum oracles.
+//!
+//! ## 📍 Where to apply this?
+//! - **Initial State Loading**: For quantum machine learning (QML) or finance.
+//! - **Unitary Embedding**: Implementing custom operators for simulation.
+//! - **Oracle Design**: Building complex multi-control functions for search algorithms.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - QSD: $O(4^n)$ gates, providing an exact but exponential synthesis.
+//!     - Amplitude Encoding: $O(2^n)$ depth.
+//! - **Gate Set**: Primarily targets a CNOT + RZ/RY universal gate set.
+//! - **Numerical Precision**: Highly sensitive to the precision of input matrices; 
+//!   orthonormality is checked before decomposition begins.
 
 use crate::gates::core::{Gate, Complex, GateMatrix2x2};
 use crate::gates::decomposition::euler_decompose_zyz;

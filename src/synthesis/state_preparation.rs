@@ -4,6 +4,34 @@
 //! - Grover-Rudolph state preparation (probabilistic distribution)
 //! - Isometry-based state preparation
 //! - Unitary state preparation
+//!
+//! ## 🎯 Why is this used?
+//! Every quantum algorithm begins with an initial state (usually $|0\rangle$). 
+//! State preparation is used to transform this baseline state into a 
+//! non-trivial one that represents your data or your starting point for 
+//! simulation. It is the "input" stage of a quantum computation.
+//!
+//! ## ⚙️ How it works?
+//! - **Grover-Rudolph**: Recursively partitions a probability distribution and 
+//!   uses controlled rotations ($RY$) to load those probabilities into 
+//!   qubit amplitudes.
+//! - **Isometry-Based**: Treats the state preparation as a mapping from 
+//!   $|0\rangle$ to a target $|\psi\rangle$. It uses Householder reflections or 
+//!   de-multiplexed rotations to synthesize the required isometry.
+//!
+//! ## 📍 Where to apply this?
+//! - **Finance**: Preparing Gaussian or custom distributions for Monte Carlo.
+//! - **QML**: High-dimensional data embedding.
+//! - **Physics**: Creating initial wavefunctions for Hamiltonian simulation.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - Sparse states: $O(Poly(log N))$ gates.
+//!     - General dense states: $O(2^n)$ gates.
+//! - **Precision**: Controlled by the resolution of the input data and 
+//!   the rotation gate precision.
+//! - **Scalability**: While powerful, dense state preparation is limited 
+//!   to small numbers of qubits due to the exponential gate count.
 
 use crate::gates::core::Gate;
 

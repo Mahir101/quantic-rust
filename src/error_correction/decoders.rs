@@ -4,6 +4,34 @@
 //! - Minimum Weight Perfect Matching (MWPM) logic
 //! - Belief Propagation (BP) logic
 //! - Union-Find decoder basics
+//!
+//! ## 🎯 Why is this used?
+//! Syndrome measurements only tell us that an error occurred; they don't explicitly 
+//! tell us which qubits were affected. Decoders are the "brain" that analyzes syndrome 
+//! data to find the most likely error pattern. Efficient decoding is critical for 
+//! real-time fault tolerance.
+//!
+//! ## ⚙️ How it works?
+//! - **Minimum Weight Perfect Matching (MWPM)**: Maps syndrome detection events to 
+//!   nodes in a graph and uses the Blossom algorithm to find the pairing that 
+//!   minimizes the total path weight (most likely error).
+//! - **Belief Propagation (BP)**: Uses message passing on a Tanner graph to iteratively 
+//!   estimate the probability of errors on each qubit.
+//! - **Union-Find**: A fast, near-linear time decoder that clusters syndrome events 
+//!   until they can be neutralized.
+//!
+//! ## 📍 Where to apply this?
+//! - **Real-time QEC**: Processing syndrome data from a physical QPU.
+//! - **Simulation**: Evaluating the logical error rate of new QEC codes.
+//! - **Post-processing**: Correcting results in software for certain code types.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - MWPM: $O(N^3)$ or $O(N^2 \log N)$ depending on implementation.
+//!     - BP: $O(Iterations \times Edges)$.
+//! - **Accuracy**: MWPM is optimal for 2D codes with independent noise; BP is 
+//!   best for QLDPC codes.
+//! - **Latency**: Designed to be implementable in low-latency hardware (FPGAs/ASICs).
 
 /// Minimum Weight Perfect Matching decoder (conceptual logic)
 pub fn mwpm_decode(

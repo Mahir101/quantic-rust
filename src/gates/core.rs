@@ -1,10 +1,38 @@
-//! Core Quantum Gates Module
-//! 
+//! # Core Quantum Gates Module
+//!
 //! This module provides implementations of standard quantum gates including:
 //! - Single-qubit gates (X, Y, Z, H, S, T, etc.)
 //! - Two-qubit gates (CNOT, CZ, SWAP, iSWAP, etc.)
 //! - Multi-qubit gates (Toffoli, Fredkin, etc.)
 //! - Parametric gates (RX, RY, RZ, etc.)
+//!
+//! ## 🎯 Why is this used?
+//! This module serves as the foundational "instruction set" for the entire Quantic-Rust library. 
+//! It defines the fundamental building blocks (gates) required to construct, represent, and
+//! manipulate quantum circuits. Without this module, higher-level operations like 
+//! Hamiltonian simulation or QFT would have no mathematical or structural basis.
+//!
+//! ## ⚙️ How it works?
+//! - **Mathematical Layer**: Implements a dedicated `Complex` number arithmetic and matrix 
+//!   structures (`GateMatrix2x2`, `GateMatrix4x4`) to provide exact unitary representations of gates.
+//! - **Structural Layer**: Defines a `Gate` enum that acts as a symbolic representation of 
+//!   quantum instructions, allowing for lightweight circuit storage and algebraic manipulation.
+//! - **Static Definitions**: Provides optimized, constant-time functions for generating 
+//!   standard gates like Hadamard, Pauli, and Phase gates.
+//!
+//! ## 📍 Where to apply this?
+//! - **Circuit Construction**: Use the `Gate` enum to build sequences of operations.
+//! - **Unitary Computation**: Use the matrix generation functions when you need to 
+//!   calculate the full transformation matrix of a small circuit or gate.
+//! - **Decomposition**: Acts as the target gate-set for the `decomposition` module.
+//!
+//! ## 📊 Code Behavior
+//! - **Performance**: Matrix generation is $O(1)$ for fixed-size gates. Parametric gates 
+//!   (RX, RY, RZ) involve trigonometric calls.
+//! - **Memory**: Extremely lightweight. The `Gate` enum is designed for cache-efficient 
+//!   vector storage.
+//! - **Correctness**: All matrices are verified to be unitary within double-precision 
+//!   floating-point limits.
 
 use std::f64::consts::{FRAC_PI_2, FRAC_PI_4};
 

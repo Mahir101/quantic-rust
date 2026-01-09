@@ -3,6 +3,38 @@
 //! This module implements QRAM circuit constructions:
 //! - Bucket-brigade QRAM
 //! - Fan-out QRAM
+//!
+//! ## 🎯 Why is this used?
+//! QRAM is the quantum equivalent of classical RAM, allowing a quantum 
+//! algorithm to access classical data stored in "memory" using a quantum 
+//! superposition of addresses. This is a critical component for algorithms 
+//! that process large datasets, such as Quantum Machine Learning, Grover 
+//! search over databases, and certain quantum chemistry simulations.
+//!
+//! ## ⚙️ How it works?
+//! - **Bucket-Brigade**: Uses a tree-like structure of "routing" qubits. 
+//!   The address bits navigate the tree to activate a unique path to a 
+//!   memory cell. This architecture is efficient as it only activates $O(\log N)$ 
+//!   routing nodes per access.
+//! - **Fan-out QRAM**: Uses a parallel "fan-out" of the address bits to 
+//!   access all memory cells simultaneously and then filters for the 
+//!   target address.
+//!
+//! ## 📍 Where to apply this?
+//! - **Database Search**: Oracles that need to retrieve values based on 
+//!   an index in superposition.
+//! - **QML**: Loading feature vectors into quantum states.
+//! - **Lookup Tables**: Implementing complex non-linear functions by 
+//!   storing their values in a grid.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - Bucket-Brigade: $O(N)$ physical qubits for $N$ memory cells, but 
+//!       only $O(\log N)$ gates are active per memory request.
+//! - **Ancilla Management**: Requires a significant number of routing 
+//!   qubits that must be properly uncomputed to avoid decoherence.
+//! - **Connectivity**: Performance is highly dependent on the ability 
+//!   to map a tree structure onto the physical QPU topology.
 
 use crate::gates::core::Gate;
 

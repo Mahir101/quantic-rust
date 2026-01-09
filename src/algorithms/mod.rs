@@ -1,4 +1,20 @@
-//! Algorithms module - Quantum algorithms and circuit constructions
+//! Algorithms Module - Quantum algorithms and circuit constructions
+//!
+//! ## 🎯 Why is this used?
+//! This module acts as the central registry for high-level quantum procedures. It organizes 
+//! complex routines into logical categories (Arithmetic, Linear Systems, etc.), allowing 
+//! users to easily compose large-scale quantum applications from verified building blocks.
+//!
+//! ## ⚙️ How it works?
+//! - **Modularity**: Explodes the library into specific sub-domains of quantum logic.
+//! - **Public API**: Re-exports all submodules for a flattened access pattern.
+//!
+//! ## 📍 Where to apply this?
+//! Import this module for implementing algorithms that go beyond simple gate manipulations, 
+//! such as phase estimation or Hamiltonian evolution.
+//!
+//! ## 📊 Code Behavior
+//! - Primary structural role with zero runtime overhead.
 
 pub mod qft;
 pub mod arithmetic;

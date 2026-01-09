@@ -4,6 +4,34 @@
 //! - HHL Algorithm (Harrow-Hassidim-Lloyd)
 //! - Quantum Singular Value Transformation (QSVT) basics
 //! - Matrix inversion (conceptual)
+//!
+//! ## 🎯 Why is this used?
+//! Solving large-scale linear systems ($Ax = b$) is a bottleneck in scientific computing, 
+//! machine learning, and engineering. Quantum algorithms like HHL offer a potential 
+//! exponential speedup over classical methods. QSVT provides a unified framework for 
+//! nearly all known quantum algorithms, including matrix inversion, Hamiltonian 
+//! simulation, and eigenvalue search.
+//!
+//! ## ⚙️ How it works?
+//! - **HHL**: Uses Phase Estimation to extract eigenvalues of $A$, conditionally rotates 
+//!   an ancilla qubit by $1/\lambda$ to perform matrix inversion in the amplitude 
+//!   domain, and then uncomputes the phases.
+//! - **QSVT**: Uses block-encoding to embed a non-unitary matrix $A$ into a larger 
+//!   unitary $U$. It then applies polynomial transformations $f(A)$ by interleaving 
+//!   the block-encoding with project-controlled phase shifts.
+//!
+//! ## 📍 Where to apply this?
+//! - **Scientific Computing**: Solving differential equations or optimization problems.
+//! - **Quantum Machine Learning**: Implementing Quantum Least Squares or Principal Component Analysis.
+//! - **Filtering**: Using QSVT as a spectral filter for matrix operators.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: HHL is logarithmic in the matrix size $N$, but depends on the 
+//!   condition number $\kappa$ and precision $\epsilon$.
+//! - **Interaction**: Requires a "Black Box" for Hamiltonian simulation (e^(iAt)) 
+//!   and state preparation for the vector $b$.
+//! - **Side Effects**: Post-selection on the ancilla qubit is required to collapse 
+//!    the system into the solution state.
 
 use crate::gates::core::Gate;
 use crate::algorithms::qft;

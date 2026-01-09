@@ -7,6 +7,35 @@
 //! - T-count optimization
 //! - CNOT minimization
 //! - Template matching
+//!
+//! ## 🎯 Why is this used?
+//! Synthesis algorithms often produce redundant or non-local gate sequences. This 
+//! module is used to "clean" those circuits, reducing the number of 1-qubit and 
+//! 2-qubit gates. This reduction is vital for reducing decoherence-related 
+//! failures and improving the overall success rate of an algorithm execution.
+//!
+//! ## ⚙️ How it works?
+//! - **Peephole Optimization**: Scans the circuit with a small window to find 
+//!   sequences that match known identities (e.g., $H \cdot H = I$).
+//! - **Commutation Analysis**: Tracks which gates can commute past one another 
+//!   to enable distant gate cancellations (e.g., $Z$ moving past $CNOT$ control).
+//! - **Rotation Merging**: Combines multiple rotations around the same axis 
+//!   (e.g., $RZ(\theta_1) \cdot RZ(\theta_2) \rightarrow RZ(\theta_1 + \theta_2)$).
+//! - **Template Matching**: Replaces specific sub-circuits with more efficient 
+//!   equivalent versions from a pre-computed library.
+//!
+//! ## 📍 Where to apply this?
+//! - **Post-Synthesis**: Immediately after generating a circuit from a matrix 
+//!   or high-level routine (QFT, Arithmetic).
+//! - **Transpilation**: During the mapping of a logical circuit to a physical 
+//!   gate set.
+//!
+//! ## 📊 Code Behavior
+//! - **Performance**: $O(G^2)$ in the worst case for commutation-based global 
+//!   cancellation, but $O(G)$ for simple local peephole passes.
+//! - **Side Effects**: May change the qubit dependency graph by reordering gates.
+//! - **Precision**: Merged rotations use sum-of-angles which maintains $O(1)$ 
+//!   relative precision error across merges.
 
 use std::f64::consts::PI;
 use crate::gates::core::Gate;

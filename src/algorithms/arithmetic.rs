@@ -5,6 +5,32 @@
 //! - Quantum multipliers
 //! - Modular arithmetic (essential for Shor's algorithm)
 //! - Comparators
+//!
+//! ## 🎯 Why is this used?
+//! Quantum arithmetic is the fundamental engine for algorithms that require high-level 
+//! mathematical processing, such as Shor's algorithm (period finding), HHL (matrix inversion), 
+//! and Grover oracles. It allows the quantum computer to perform logical calculations directly 
+//! on superposed states.
+//!
+//! ## ⚙️ How it works?
+//! - **Draper Adder**: Operates in the Fourier basis by first applying a QFT, then 
+//!   controlled-phase rotations proportional to the binary values, and finally an inverse QFT.
+//! - **Ripple-Carry Logic**: Uses classical-style logic gates (MAJ and UMA) implemented with 
+//!   Toffoli (CCX) and CNOT gates to propagate carries through a register.
+//! - **Modular Arithmetic**: Uses conditional subtraction and sign-bit checking to implement 
+//!   $|x\rangle \rightarrow |x+y \pmod N\rangle$, which is core to modular exponentiation.
+//!
+//! ## 📍 Where to apply this?
+//! - **Shor's Algorithm**: For modular exponentiation $a^x \pmod N$.
+//! - **Oracles**: In Grover's search when the search condition is a mathematical inequality or equation.
+//! - **Variational Algorithms**: For implementing objective functions that involve arithmetic cost functions.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: Draper adders require $O(n^2)$ gates due to QFT, but use 0 ancilla. 
+//!   Ripple-carry adders are $O(n)$ gates but may require ancilla management.
+//! - **Memory**: In-place operations are prioritized to minimize qubit footprint.
+//! - **Side Effects**: Some multipliers require ancilla qubits which must be uncomputed 
+//!   to avoid entanglement-driven errors in larger algorithms.
 
 use std::f64::consts::PI;
 use crate::gates::core::Gate;

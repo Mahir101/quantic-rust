@@ -1,4 +1,4 @@
-//! Gate Decomposition Algorithms
+//! # Gate Decomposition Algorithms
 //!
 //! This module provides algorithms for decomposing arbitrary quantum gates
 //! into elementary gate sets:
@@ -6,6 +6,36 @@
 //! - KAK decomposition for two-qubit gates  
 //! - Cartan decomposition
 //! - Multi-controlled gate synthesis (Gray code)
+//!
+//! ## 🎯 Why is this used?
+//! Hardware QPUs often only support a restricted "basis set" of gates (e.g., CNOT and 
+//! arbitrary rotations). This module is used to bridge the gap between abstract unitaries 
+//! (like a custom 2-qubit matrix) and executable circuit instructions by breaking down 
+//! complex operations into these native primitives.
+//!
+//! ## ⚙️ How it works?
+//! - **Algebraic Decomposition**: Uses Euler angle extraction for $SU(2)$ to decompose 
+//!   single-qubit matrices into RZ-RY-RZ sequences.
+//! - **Lie Algebraic Methods**: Implements KAK decomposition for $SU(4)$ which minimizes the 
+//!   number of two-qubit interactions (Max 3 CNOTs).
+//! - **Boolean Analysis**: Uses Gray code sequences to synthesize multi-controlled gates 
+//!   (MCX/MCZ) with efficient CNOT counts.
+//! - **Numerical Approximation**: Solovay-Kitaev algorithm (skeleton) for approximating 
+//!   any unitary using a finite discrete gate set (H, T, S).
+//!
+//! ## 📍 Where to apply this?
+//! - **Transpilation**: During the final stage of compiling a circuit for specific hardware.
+//! - **Circuit Compression**: Reducing the depth of circuits by re-synthesizing unitary chunks.
+//! - **Controlled Operations**: When implementing complex oracles (like in Grover's) that 
+//!   require many control qubits.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - Single-qubit: $O(1)$ analytical solution.
+//!     - Two-qubit (KAK): $O(1)$ analytical solution.
+//!     - Multi-controlled: $O(2^n)$ with respect to control qubits.
+//! - **Precision**: Numerical stability is maintained by using double-precision floats; 
+//!   singularities in Euler angles are handled via atan2.
 
 use std::f64::consts::PI;
 use super::core::{Complex, GateMatrix2x2, GateMatrix4x4, Gate};

@@ -4,6 +4,36 @@
 //! - Trotter-Suzuki decomposition
 //! - Linear Combination of Unitaries (LCU)
 //! - Hamiltonian simulation
+//!
+//! ## 🎯 Why is this used?
+//! Simulating the dynamics of quantum systems (Hamiltonian simulation) is the "killer app" 
+//! of quantum computing. It allows for the study of complex chemical reactions, material 
+//! properties, and high-energy physics that are classically intractable. These routines 
+//! are essential for calculating ground state energies, reaction rates, and time-dependent 
+//! observables in molecular and condensed matter systems.
+//!
+//! ## ⚙️ How it works?
+//! - **Trotter-Suzuki Decomposition**: Approximates the evolution $e^{-iHt}$ for a 
+//!   Hamiltonian $H = \sum H_j$ by interleaving the individual evolutions $e^{-iH_j \Delta t}$ 
+//!   over small time steps. Higher-order formulas (ST2, ST4) provide better accuracy by 
+//!   symmetrizing the gate sequence.
+//! - **Linear Combination of Unitaries (LCU)**: Represents the operator as a sum of 
+//!   unitaries $\sum \alpha_j U_j$. It uses a `PREPARE` circuit to load coefficients into an 
+//!   ancilla register and a `SELECT` circuit to apply the corresponding unitary $U_j$.
+//!
+//! ## 📍 Where to apply this?
+//! - **Quantum Chemistry**: Simulating electronic structure Hamiltonians (e.g., in VQE or QPE).
+//! - **Solid State Physics**: Modeling the Hubbard model or other lattice Hamiltonians.
+//! - **Algorithm Design**: As a building block for HHL (which requires simulating $e^{iAt}$).
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - Trotter: Depends on the norm of the Hamiltonian terms and required precision $\epsilon$.
+//!     - LCU: Complexity is typically linear in the sum of coefficients $\sum |\alpha_j|$.
+//! - **Interaction**: Requires parameterized gates (like RXX, RYY, RZZ) or pre-decomposed 
+//!   circuits for each term.
+//! - **Precision**: Trotter error scales as $(\Delta t)^k$; error in LCU is handled via 
+//!   amplitude amplification or oblivious amplitude amplification.
 
 use crate::gates::core::Gate;
 

@@ -6,6 +6,37 @@
 //! - T-depth and CNOT-depth analysis
 //! - Circuit equivalence checking
 //! - Resource estimation
+//!
+//! ## 🎯 Why is this used?
+//! In quantum computing, resources (qubits and gates) are extremely expensive and noisy. 
+//! This module allows developers to quantify the cost of their algorithms, compare 
+//! different implementations, and ensure that a circuit fits within the constraints 
+//! of a specific hardware target (e.g., restricted connectivity or max T-depth).
+//!
+//! ## ⚙️ How it works?
+//! - **Depth Counting**: Uses a greedy scheduling approach (tracking per-qubit free times) 
+//!   to determine the minimum number of time steps required.
+//! - **Interaction Mapping**: Builds a graph representation where nodes are qubits 
+//!   and edges represent two-qubit interactions, useful for hardware mapping.
+//! - **Unitary Verification**: For small circuits, it generates the full $2^N \times 2^N$ 
+//!   matrix and compares them (ignoring global phase) to verify algorithmic correctness.
+//! - **Fault-Tolerant Estimation**: Maps logical metrics (T-count) to physical overheads 
+//!   based on surface code distillation models.
+//!
+//! ## 📍 Where to apply this?
+//! - **Performance Profiling**: Benchmarking the overhead of a new algorithm.
+//! - **Optimization Verification**: Proving that an optimized circuit is still 
+//!   logically identical to the original.
+//! - **Hardware Feasibility**: Checking if a circuit exceeds physical qubit limits 
+//!   or decoherence time estimates.
+//!
+//! ## 📊 Code Behavior
+//! - **Performance**: Structural analysis (gate counting, depth) is $O(G)$ where $G$ 
+//!   is the number of gates. Unitary equivalence is $O(2^{3N})$.
+//! - **Memory**: Resource summaries use lightweight structs. Unitary simulation 
+//!   is memory-intensive and restricted to $N \le 10$.
+//! - **Accuracy**: Resource estimates for fault-tolerance are based on common 
+//!   theoretical heuristics and may vary with code implementation details.
 
 use std::collections::{HashMap, HashSet};
 use crate::gates::core::Gate;

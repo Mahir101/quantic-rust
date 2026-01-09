@@ -5,6 +5,37 @@
 //! - UCCSD Ansatz
 //! - QAOA circuits
 //! - Parameter shift gradient computation
+//!
+//! ## 🎯 Why is this used?
+//! Variational algorithms (like VQE and QAOA) are the primary candidates for 
+//! achieving quantum advantage on NISQ hardware. This module provides the 
+//! "ansatz" (parameterized circuit templates) that act as a searchable 
+//! space for optimization. These are used to find ground state energies 
+//! in chemistry or solve combinatorial optimization problems in logistics.
+//!
+//! ## ⚙️ How it works?
+//! - **HEA**: Uses a repeating pattern of single-qubit rotations and entangling 
+//!   layers (like CZ or CNOT) that are easy to execute on specific hardware.
+//! - **UCCSD**: A chemically-inspired ansatz that uses Unitary Coupled Cluster 
+//!   theory to model electron correlations in molecules.
+//! - **QAOA**: Interleaves a problem-specific Hamiltonian (cost) with a 
+//!   transverse-field Hamiltonian (mixer) to drive the system toward the 
+//!   optimal solution of an Ising problem.
+//! - **Parameter-Shift Rule**: Provides an exact analytical method to calculate 
+//!   gradients of the expectation value with respect to circuit parameters.
+//!
+//! ## 📍 Where to apply this?
+//! - **Quantum Chemistry**: Solving for molecular properties (VQE).
+//! - **Optimization**: Solving Max-Cut, TSP, or financial portfolio optimization (QAOA).
+//! - **QML**: Training quantum neural networks.
+//!
+//! ## 📊 Code Behavior
+//! - **Performance**: Circuit generation is $O(L \times N)$ where $L$ is 
+//!   the number of layers and $N$ is the number of qubits.
+//! - **Gradient Cost**: Parameter shift requires $2P$ circuit executions 
+//!   to find the gradient for $P$ parameters.
+//! - **Barren Plateaus**: Users should be aware that high-depth HEA ansätze 
+//!   can suffer from vanishing gradients.
 
 use std::f64::consts::PI;
 use crate::gates::core::Gate;

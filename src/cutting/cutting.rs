@@ -4,6 +4,38 @@
 //! - Wire cutting (QPD-based)
 //! - Gate cutting
 //! - Entanglement forging
+//!
+//! ## 🎯 Why is this used?
+//! Today's quantum processors are constrained by both qubit counts and limited 
+//! connectivity. Circuit cutting allows us to "trade sampling for qubits" by 
+//! partitioning a large quantum circuit into smaller sub-circuits that can be 
+//! executed independently on separate QPUs or even on a single smaller QPU. 
+//! It is a cornerstone of Distributed Quantum Computing.
+//!
+//! ## ⚙️ How it works?
+//! - **Wire Cutting**: Decomposes the identity channel into a quasi-probability 
+//!   distribution (QPD) of preparation and measurement operations. A single 
+//!   wire cut effectively breaks the connection between zwei sub-circuits.
+//! - **Gate Cutting**: Replaces expensive non-local gates (like long-range CNOTs) 
+//!   with a sum of single-qubit operations across both qubits.
+//! - **Knit & Reconstruct**: After execution, the results from all sub-circuit 
+//!   configurations are classically recombined using the QPD coefficients to 
+//!   reconstruct the original expectation value.
+//!
+//! ## 📍 Where to apply this?
+//! - **Scalability**: Running a 50-qubit algorithm on a cluster of 20-qubit devices.
+//! - **Hybrid Cloud**: Distributing a massive circuit across multiple quantum 
+//!   cloud providers.
+//! - **Noise Mitigation**: Reducing the depth of individual circuit fragments to 
+//!   keep them within coherence time limits.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: Cutting induces an exponential overhead in the number of shots 
+//!   required ($O(4^k)$ for $k$ wire cuts). Each cut generates 4 sub-circuit variants.
+//! - **Overhead**: Total shots scale as $\gamma^2 / \epsilon^2$, where $\gamma$ 
+//!   is the sampling overhead (accumulated from all cut decompositions).
+//! - **Verification**: All decompositions are verified to satisfy the trace-preserving 
+//!   and unital requirements of valid quantum channels.
 
 use crate::gates::core::Gate;
 

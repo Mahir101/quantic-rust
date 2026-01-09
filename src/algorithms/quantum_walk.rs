@@ -5,6 +5,37 @@
 //! - Continuous-time quantum walks
 //! - Quantum walk on graphs
 //! - Szegedy walks
+//!
+//! ## 🎯 Why is this used?
+//! Quantum walks are the quantum version of classical random walks and provide a powerful 
+//! framework for developing quantum algorithms. They are widely used for spatial search 
+//! (Grover-like search on graphs), element distinctness, and evaluating Boolean formulas. 
+//! They often provide quadratic speedups over classical random walks for hitting times and mixing times.
+//!
+//! ## ⚙️ How it works?
+//! - **Discrete-Time (DTQW)**: Uses an auxiliary "coin" space. Each step consists of a 
+//!   coin flip (unitary on the coin qubit) followed by a conditional shift operator that 
+//!   moves the walker's position based on the coin's state.
+//! - **Continuous-Time (CTQW)**: The evolution is governed by the Schrödinger equation 
+//!   $e^{-iHt}$ where the Hamiltonian $H$ is the adjacency matrix or Laplacian of the graph.
+//! - **Szegedy Walk**: A quantized version of Markov chains that maps a classical 
+//!   stochastic transition matrix to a quantum walk on the edges of the graph using a 
+//!   bipartite reflection scheme.
+//!
+//! ## 📍 Where to apply this?
+//! - **Graph Search**: Finding a marked node in a structured database or graph.
+//! - **Property Testing**: Determining if a graph is connected or bipartite.
+//! - **Quantum Simulation**: Simulating transport phenomena in physical systems.
+//! - **Optimization**: Using quantum walk-based simulated annealing.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - DTQW: $O(1)$ per step for coin and $O(\log N)$ for conditional shifts.
+//!     - CTQW: Simulated using $k$-th order Trotter-Suzuki, leading to $O(Poly(1/\epsilon))$ depth.
+//! - **Connectivity**: Requires careful mapping of graph adjacency to qubit-to-qubit 
+//!   entangling gates.
+//! - **Side Effects**: Entanglement between the coin and position registers is fundamental 
+//!   to the walk's non-classical behavior (interference).
 
 use crate::gates::core::Gate;
 

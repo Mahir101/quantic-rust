@@ -7,6 +7,35 @@
 //! - Steane code (7-qubit)
 //! - Surface code basics
 //! - Syndrome extraction
+//!
+//! ## 🎯 Why is this used?
+//! Physical qubits are inherently noisy. Error correction is the only path to 
+//! reliable, large-scale quantum computing. This module provides the circuits 
+//! required to encode logical qubits into many physical qubits, allowing us 
+//! to detect and correct errors without collapsing the quantum state.
+//!
+//! ## ⚙️ How it works?
+//! - **Encoding**: Maps a single logical state $|\psi\rangle$ to a highly entangled 
+//!   multi-qubit state (e.g., $|\psi\rangle \rightarrow |\psi,\psi,\psi\rangle$).
+//! - **Stabilizer Formalism**: Uses parity check measurements (syndromes) to 
+//!   leak information about the errors (Pauli X or Z) without revealing the 
+//!   encoded data.
+//! - **Fault-Tolerant Gadgets**: Implements logical gates and state distillation 
+//!   (like Magic State Distillation) to maintain the logical state's purity.
+//!
+//! ## 📍 Where to apply this?
+//! - **Fault-Tolerant Computing**: The backbone of any "Logical QPU".
+//! - **Communication**: Protecting quantum information during transmission.
+//! - **Simulation**: Running high-accuracy simulations that require stable qubits.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - Encoding/Decoding: $O(N)$ for $N$ qubits. 
+//!     - Syndromes: Requires periodic measurement cycles (Rounds).
+//! - **Redundancy**: Increases the qubit count significantly (e.g., 9x for Shor code, 
+//!   potentially thousands for Surface codes at high distances).
+//! - **Invariants**: All implemented codes satisfy the Knill-Laflamme conditions 
+//!   for error correction.
 
 use crate::gates::core::Gate;
 

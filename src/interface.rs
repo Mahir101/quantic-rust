@@ -1,4 +1,29 @@
-use pyo3::prelude::*;
+//! # Python Interface & Bindings
+//!
+//! ## 🎯 Why is this used?
+//! This is the primary bridge between the high-performance Rust core and 
+//! the flexible Python ecosystem. It allows researchers and developers to 
+//! use Quantic-Rust's advanced synthesis and optimization routines within 
+//! standard Python environments (like Jupyter notebooks or Qiskit-based pipelines).
+//!
+//! ## ⚙️ How it works?
+//! - **PyO3 Bindings**: Uses the `pyo3` library to map Rust types and functions 
+//!   to Python classes and methods.
+//! - **Type Conversion**: Handles the translation between Rust's strict 
+//!   symbolic gate representations and Python's dynamic data structures.
+//! - **Wrappers**: Provides simplified, high-level entry points for complex 
+//!   tasks like Pauli network synthesis and Clifford isometry mapping.
+//!
+//! ## 📍 Where to apply this?
+//! Use this when you want to leverage Quantic-Rust from Python. It is 
+//! the module that is compiled into the `quantic_rust` Python package.
+//!
+//! ## 📊 Code Behavior
+//! - **Performance**: Minimal overhead for type conversion. The heavy 
+//!   computational logic remains in native Rust code.
+//! - **Safety**: Ensures that Python-side memory management (GC) is correctly 
+//!   synchronized with Rust's ownership model.
+//!
 use pyo3::wrap_pyfunction;
 use rustiq_core::routines::rotation_extraction::extract_rotations as extract_rot;
 use rustiq_core::routines::rotation_optimization::full_initial_state_propagation;

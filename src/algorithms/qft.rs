@@ -1,10 +1,42 @@
-//! Quantum Fourier Transform (QFT) and related algorithms
+//! # Quantum Fourier Transform (QFT) Module
 //!
 //! This module provides:
 //! - Standard QFT circuit synthesis
 //! - Inverse QFT
 //! - Approximate QFT (reduced depth)
 //! - Quantum Phase Estimation (QPE)
+//!
+//! ## 🎯 Why is this used?
+//! The QFT is one of the most critical subroutines in quantum computing. It is the quantum 
+//! analogue of the discrete Fourier transform and serves as the backbone for many iconic 
+//! algorithms, including Shor's factoring algorithm, Phase Estimation, and many quantum 
+//! simulation routines.
+//!
+//! ## ⚙️ How it works?
+//! - **Recursive Synthesis**: Constructs the QFT circuit using a sequence of Hadamard 
+//!   gates and controlled phase rotations ($R_k$).
+//! - **Inverse Mapping**: Implements the Inverse QFT by reversing the gate order and 
+//!   negating all rotation phases.
+//! - **Depth Optimization**: Provides an **Approximate QFT (AQFT)** version that ignores 
+//!   small-angle rotations beyond a certain threshold to reduce circuit depth while 
+//!   maintaining high fidelity.
+//! - **Phase Estimation**: Implements the QPE wrapper which uses the QFT to extract 
+//!   the eigenvalues of a unitary operator.
+//!
+//! ## 📍 Where to apply this?
+//! - **Shor's Algorithm**: For period finding.
+//! - **Quantum Chemistry**: In Phase Estimation to find grounds state energies.
+//! - **Signal Processing**: For quantum-enhanced frequency analysis.
+//! - **State Preparation**: Transforming states from the computational to the Fourier basis.
+//!
+//! ## 📊 Code Behavior
+//! - **Complexity**: 
+//!     - Standard QFT: $O(n^2)$ gates for $n$ qubits.
+//!     - Approximate QFT: $O(n \log n)$ gates, significantly improving scalability.
+//! - **Interaction**: Standard implementation includes a final sequence of SWAP gates 
+//!   to correct qubit ordering unless specified otherwise.
+//! - **Precision**: Controlled rotations use high-precision $2\pi/2^k$ calculations 
+//!   to minimize phase accumulation errors.
 
 use std::f64::consts::PI;
 use crate::gates::core::Gate;
