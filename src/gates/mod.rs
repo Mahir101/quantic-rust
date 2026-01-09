@@ -1,5 +1,7 @@
 //! # Gates Module
 //!
+//! Gates module - Quantum gate definitions and decomposition algorithms
+//!
 //! ## 🎯 Why is this used?
 //! This is the entry point for all gate-related operations. It groups together the symbolic 
 //! definitions of quantum gates and the mathematical tools required to manipulate them.
