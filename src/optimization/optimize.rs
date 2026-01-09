@@ -383,14 +383,13 @@ fn add_t_gates(result: &mut Vec<Gate>, q: usize, count: i32) {
             result.push(Gate::S(q));
             result.push(Gate::T(q));
         }
-        4 => result.push(Gate::Z(q)),
+        4 | -4 => result.push(Gate::Z(q)),
         -1 | 7 => result.push(Gate::Tdg(q)),
         -2 | 6 => result.push(Gate::Sdg(q)),
         -3 | 5 => {
             result.push(Gate::Sdg(q));
             result.push(Gate::Tdg(q));
         }
-        -4 | 4 => result.push(Gate::Z(q)),
         _ => {
             for _ in 0..count.abs() {
                 if count > 0 {
@@ -452,16 +451,24 @@ pub fn optimize_cnot_gates(circuit: &[Gate]) -> Vec<Gate> {
         
         // Rule 2: CX(a,b) CX(b,c) CX(a,b) = CX(a,c) CX(b,c)
         for i in 0..result.len().saturating_sub(2) {
-            if let (Gate::CX(a1, b1), Gate::CX(b2, c), Gate::CX(a3, b3)) = 
+            let pattern_match = if let (Gate::CX(a1, b1), Gate::CX(b2, c), Gate::CX(a3, b3)) = 
                 (&result[i], &result[i+1], &result[i+2]) 
             {
                 if a1 == a3 && b1 == b3 && b1 == b2 && c != a1 {
-                    result[i] = Gate::CX(*a1, *c);
-                    result[i+1] = Gate::CX(*b1, *c);
-                    result.remove(i+2);
-                    changed = true;
-                    break;
+                    Some((*a1, *b1, *c))
+                } else {
+                    None
                 }
+            } else {
+                None
+            };
+
+            if let Some((a, b, c)) = pattern_match {
+                result[i] = Gate::CX(a, c);
+                result[i+1] = Gate::CX(b, c);
+                result.remove(i+2);
+                changed = true;
+                break;
             }
         }
     }

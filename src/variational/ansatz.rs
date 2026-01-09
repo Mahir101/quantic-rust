@@ -525,7 +525,7 @@ pub fn swap_test(
 /// Uses a control qubit to measure real or imaginary part of expectation.
 pub fn hadamard_test(
     control: usize,
-    target_qubits: &[usize],
+    _target_qubits: &[usize],
     unitary: &[Gate],
     measure_imaginary: bool,
 ) -> Vec<Gate> {

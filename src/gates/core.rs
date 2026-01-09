@@ -6,7 +6,7 @@
 //! - Multi-qubit gates (Toffoli, Fredkin, etc.)
 //! - Parametric gates (RX, RY, RZ, etc.)
 
-use std::f64::consts::{PI, FRAC_PI_2, FRAC_PI_4};
+use std::f64::consts::{FRAC_PI_2, FRAC_PI_4};
 
 /// Represents a 2x2 complex matrix for single-qubit gates
 #[derive(Clone, Debug)]

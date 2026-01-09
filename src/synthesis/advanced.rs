@@ -7,8 +7,7 @@
 //! - Linear reversible synthesis
 //! - Boolean function synthesis
 
-use std::f64::consts::PI;
-use crate::gates::core::{Gate, Complex, GateMatrix2x2, GateMatrix4x4};
+use crate::gates::core::{Gate, Complex, GateMatrix2x2};
 use crate::gates::decomposition::euler_decompose_zyz;
 
 // ============================================================================
@@ -41,10 +40,10 @@ pub fn shannon_decompose(num_qubits: usize, matrix: &[Vec<Complex>]) -> Vec<Gate
     let mut gates = Vec::new();
     
     // Extract block structure
-    let u00 = extract_block(matrix, 0, 0, half);
-    let u01 = extract_block(matrix, 0, half, half);
-    let u10 = extract_block(matrix, half, 0, half);
-    let u11 = extract_block(matrix, half, half, half);
+    let _u00 = extract_block(matrix, 0, 0, half);
+    let _u01 = extract_block(matrix, 0, half, half);
+    let _u10 = extract_block(matrix, half, 0, half);
+    let _u11 = extract_block(matrix, half, half, half);
     
     // Compute CS decomposition: U = (L₀ ⊕ L₁) · Σ · (R₀ ⊕ R₁)
     // where Σ contains the cosine-sine structure
@@ -399,7 +398,7 @@ pub fn parity_network_synthesis(matrix: &[Vec<bool>]) -> Vec<Gate> {
 /// 
 /// ESOP = Exclusive Sum Of Products
 /// f(x) = t₁ ⊕ t₂ ⊕ ... ⊕ tₘ where each tᵢ is a product term
-pub fn esop_synthesis(num_vars: usize, terms: &[Vec<usize>], target: usize) -> Vec<Gate> {
+pub fn esop_synthesis(_num_vars: usize, terms: &[Vec<usize>], target: usize) -> Vec<Gate> {
     let mut gates = Vec::new();
     
     for term in terms {
@@ -423,7 +422,7 @@ pub fn esop_synthesis(num_vars: usize, terms: &[Vec<usize>], target: usize) -> V
 /// Synthesize a reversible circuit for a permutation
 pub fn permutation_synthesis(permutation: &[usize]) -> Vec<Gate> {
     let n = permutation.len();
-    let num_qubits = ((n as f64).log2().ceil()) as usize;
+    let _num_qubits = ((n as f64).log2().ceil()) as usize;
     
     let mut gates = Vec::new();
     let mut current: Vec<usize> = (0..n).collect();

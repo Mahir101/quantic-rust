@@ -38,7 +38,7 @@ pub fn euler_decompose_zyz(matrix: &GateMatrix2x2) -> EulerAngles {
     // Remove global phase
     let phase_factor = Complex::from_polar(1.0, -global_phase);
     let a = a * phase_factor;
-    let b = b * phase_factor;
+    let _b = b * phase_factor;
     let c = c * phase_factor;
     let d = d * phase_factor;
     
@@ -54,8 +54,8 @@ pub fn euler_decompose_zyz(matrix: &GateMatrix2x2) -> EulerAngles {
         let angle = c.im.atan2(c.re);
         (angle / 2.0, -angle / 2.0)
     } else {
-        let phi = (c.im.atan2(c.re) + a.im.atan2(a.re));
-        let lambda = (c.im.atan2(c.re) - a.im.atan2(a.re));
+        let phi = c.im.atan2(c.re) + a.im.atan2(a.re);
+        let lambda = c.im.atan2(c.re) - a.im.atan2(a.re);
         (phi, lambda)
     };
     
@@ -259,7 +259,7 @@ pub fn decompose_mcx(controls: &[usize], target: usize) -> Vec<Gate> {
         0 => vec![Gate::X(target)],
         1 => vec![Gate::CX(controls[0], target)],
         2 => super::core::decompose_toffoli(controls[0], controls[1], target),
-        n => {
+        _n => {
             // Use recursive decomposition with ancilla-free method
             // This uses O(n²) gates but requires no ancilla
             decompose_mcx_no_ancilla(controls, target)
@@ -279,11 +279,11 @@ fn decompose_mcx_no_ancilla(controls: &[usize], target: usize) -> Vec<Gate> {
     
     // Split controls into two groups
     let m = n / 2;
-    let first_half = &controls[..m];
-    let second_half = &controls[m..];
+    let _first_half = &controls[..m];
+    let _second_half = &controls[m..];
     
     // Use last control as "pseudo-ancilla"
-    let aux = controls[n - 1];
+    let _aux = controls[n - 1];
     
     // Decompose recursively
     // V gate (√X) implementation simplified

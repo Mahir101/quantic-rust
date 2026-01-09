@@ -140,7 +140,7 @@ pub fn approximate_qft(n: usize, approximation_degree: usize, qubits: Option<&[u
 /// Gates implementing QPE (requires eigenvector initialization separately)
 pub fn qpe_circuit(
     precision_qubits: &[usize],
-    unitary_qubits: &[usize],
+    _unitary_qubits: &[usize],
     controlled_powers: &[Vec<Gate>],  // controlled_powers[k] = controlled U^(2^k)
 ) -> Vec<Gate> {
     let n = precision_qubits.len();
@@ -157,7 +157,7 @@ pub fn qpe_circuit(
     
     // Step 2: Apply controlled unitary powers
     // Control qubit k applies U^(2^k) to the unitary register
-    for (k, cu_gates) in controlled_powers.iter().enumerate() {
+    for (_k, cu_gates) in controlled_powers.iter().enumerate() {
         gates.extend(cu_gates.clone());
     }
     
@@ -170,7 +170,7 @@ pub fn qpe_circuit(
 /// Helper function to create controlled-U circuits for common unitaries
 /// This creates c-U^(2^k) by repeated application or efficient synthesis
 pub fn create_controlled_power(
-    control: usize,
+    _control: usize,
     base_controlled_u: &[Gate],
     power: usize,
 ) -> Vec<Gate> {

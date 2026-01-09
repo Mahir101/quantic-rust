@@ -215,7 +215,7 @@ pub fn pec_sample_circuit(
     let mut sign = 1.0;
     let mut rng_idx = 0;
     
-    for (gate, decomp) in original_circuit.iter().zip(decompositions.iter()) {
+    for (_gate, decomp) in original_circuit.iter().zip(decompositions.iter()) {
         let gamma = decomp.gamma();
         
         // Normalize probabilities

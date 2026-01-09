@@ -4,7 +4,7 @@ use rustiq_core::routines::rotation_extraction::extract_rotations as extract_rot
 use rustiq_core::routines::rotation_optimization::full_initial_state_propagation;
 use rustiq_core::routines::rotation_optimization::zhang_rotation_optimization as zhang_opt;
 use rustiq_core::structures::{CliffordGate, GraphState, Metric as RsMetric, PauliSet};
-use rustiq_core::structures::{IsometryTableau, Parameter, PauliLike, Tableau};
+use rustiq_core::structures::{IsometryTableau, Parameter, Tableau};
 use rustiq_core::synthesis::clifford::codiagonalization::{
     codiagonalize as codiag, codiagonalize_subsetwise,
 };

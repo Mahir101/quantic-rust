@@ -438,7 +438,7 @@ pub fn surface_code_syndrome_round(
     z_syndrome: &[Vec<usize>],
 ) -> Vec<Gate> {
     let mut gates = Vec::new();
-    let n = 2 * distance - 1;
+    let _n = 2 * distance - 1;
     
     // Initialize all syndrome qubits
     for row in x_syndrome {
@@ -533,7 +533,7 @@ pub fn prepare_t_state(qubit: usize) -> Vec<Gate> {
 pub fn t_state_distillation(
     input_qubits: &[usize],
     output_qubit: usize,
-    ancilla: &[usize],
+    _ancilla: &[usize],
 ) -> Vec<Gate> {
     assert_eq!(input_qubits.len(), 15);
     

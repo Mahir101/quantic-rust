@@ -58,7 +58,7 @@ pub fn draper_adder_classical(a: u64, b_qubits: &[usize]) -> Vec<Gate> {
 pub fn draper_adder(a_qubits: &[usize], b_qubits: &[usize]) -> Vec<Gate> {
     let n_a = a_qubits.len();
     let n_b = b_qubits.len();
-    let n = n_a.max(n_b);
+    let _n = n_a.max(n_b);
     
     let mut gates = Vec::new();
     
@@ -249,7 +249,7 @@ pub fn quantum_less_than(
     a_qubits: &[usize],
     b_qubits: &[usize],
     flag: usize,
-    ancilla: &[usize],
+    _ancilla: &[usize],
 ) -> Vec<Gate> {
     assert_eq!(a_qubits.len(), b_qubits.len());
     
@@ -320,7 +320,7 @@ pub fn modular_adder(
     a_qubits: &[usize],
     b_qubits: &[usize],
     n_value: u64,
-    ancilla: &[usize],
+    _ancilla: &[usize],
 ) -> Vec<Gate> {
     let n = b_qubits.len();
     let mut gates = Vec::new();
@@ -365,7 +365,7 @@ pub fn controlled_modular_multiply(
     // Use repeated doubling: a*x = Σ a*2^i*x[i]
     let mut power_of_a = a;
     
-    for (i, &x_bit) in x_qubits.iter().enumerate() {
+    for (_i, &x_bit) in x_qubits.iter().enumerate() {
         // Controlled addition of power_of_a if x[i] = 1
         // c-ADD(power_of_a, result) controlled by x[i] and main control
         
@@ -407,7 +407,7 @@ pub fn modular_exponentiation(
     // Square-and-multiply algorithm
     let mut power = a;
     
-    for (i, &x_bit) in x_qubits.iter().enumerate() {
+    for (_i, &x_bit) in x_qubits.iter().enumerate() {
         // Controlled multiplication by power
         gates.extend(controlled_modular_multiply(
             x_bit,
