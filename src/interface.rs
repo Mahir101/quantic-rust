@@ -24,6 +24,7 @@
 //! - **Safety**: Ensures that Python-side memory management (GC) is correctly 
 //!   synchronized with Rust's ownership model.
 //!
+use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 use rustiq_core::routines::rotation_extraction::extract_rotations as extract_rot;
 use rustiq_core::routines::rotation_optimization::full_initial_state_propagation;
