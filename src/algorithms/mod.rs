@@ -21,9 +21,11 @@ pub mod arithmetic;
 pub mod quantum_walk;
 pub mod linear_systems;
 pub mod simulations;
+pub mod oracles;
 
 pub use qft::*;
 pub use arithmetic::*;
 pub use quantum_walk::*;
 pub use linear_systems::*;
 pub use simulations::*;
+pub use oracles::*;

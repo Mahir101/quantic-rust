@@ -178,7 +178,7 @@ impl SimonsState {
                     let old_idx = old_x + y * size_n;
                     let new_idx = new_x + y * size_n;
                     
-                    let dot = (old_x & new_x).count_ones();
+                    let dot = ((old_x & new_x) as usize).count_ones();
                     let sign = if dot % 2 == 0 { 1.0 } else { -1.0 };
                     
                     new_amplitudes[new_idx] += sign * self.amplitudes[old_idx] * factor;

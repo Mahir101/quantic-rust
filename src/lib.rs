@@ -53,3 +53,6 @@ pub mod synthesis;
 pub mod analysis;
 pub mod error_mitigation;
 pub mod cutting;
+
+// Post-Quantum Cryptography (NIST FIPS 203/204/205)
+pub mod cryptography;

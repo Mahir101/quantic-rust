@@ -73,7 +73,7 @@
 //! - Bernstein, E. & Vazirani, U. (1993). "Quantum complexity theory"
 //! - Nielsen & Chuang (2010). Ch. 6.5
 
-use std::f64::consts::FRAC_1_SQRT_2;
+
 
 /// Oracle for Bernstein-Vazirani Algorithm
 ///

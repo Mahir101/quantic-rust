@@ -77,7 +77,7 @@
 //! - Cleve et al. (1998). "Quantum algorithms revisited"
 //! - Nielsen & Chuang (2010). Ch. 1.4.4
 
-use std::f64::consts::FRAC_1_SQRT_2;
+
 
 /// Represents different types of n-bit oracles for Deutsch-Jozsa
 #[derive(Debug, Clone)]
