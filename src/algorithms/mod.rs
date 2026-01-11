@@ -25,6 +25,7 @@ pub mod oracles;
 pub mod search;
 pub mod phase_estimation;
 pub mod qsvt;
+pub mod novel_2025;
 
 pub use qft::*;
 pub use arithmetic::*;
@@ -35,3 +36,4 @@ pub use oracles::*;
 pub use search::*;
 pub use phase_estimation::*;
 pub use qsvt::*;
+pub use novel_2025::*;
