@@ -23,6 +23,8 @@ pub mod linear_systems;
 pub mod simulations;
 pub mod oracles;
 pub mod search;
+pub mod phase_estimation;
+pub mod qsvt;
 
 pub use qft::*;
 pub use arithmetic::*;
@@ -31,3 +33,5 @@ pub use linear_systems::*;
 pub use simulations::*;
 pub use oracles::*;
 pub use search::*;
+pub use phase_estimation::*;
+pub use qsvt::*;

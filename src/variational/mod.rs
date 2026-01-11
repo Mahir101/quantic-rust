@@ -20,6 +20,8 @@
 
 pub mod ansatz;
 pub mod qaoa_variants;
+pub mod vqe_variants;
 
 pub use ansatz::*;
 pub use qaoa_variants::*;
+pub use vqe_variants::*;
