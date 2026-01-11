@@ -19,5 +19,7 @@
 //! - Structural wrapper with zero overhead.
 
 pub mod ansatz;
+pub mod qaoa_variants;
 
 pub use ansatz::*;
+pub use qaoa_variants::*;

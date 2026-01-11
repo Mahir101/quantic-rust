@@ -56,3 +56,6 @@ pub mod cutting;
 
 // Post-Quantum Cryptography (NIST FIPS 203/204/205)
 pub mod cryptography;
+
+// Quantum Machine Learning (2025-26 algorithms)
+pub mod qml;

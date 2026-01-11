@@ -22,6 +22,7 @@ pub mod quantum_walk;
 pub mod linear_systems;
 pub mod simulations;
 pub mod oracles;
+pub mod search;
 
 pub use qft::*;
 pub use arithmetic::*;
@@ -29,3 +30,4 @@ pub use quantum_walk::*;
 pub use linear_systems::*;
 pub use simulations::*;
 pub use oracles::*;
+pub use search::*;
