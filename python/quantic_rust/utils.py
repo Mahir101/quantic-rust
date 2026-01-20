@@ -2,11 +2,11 @@
 Utility functions for quantic_rust's circuits
 """
 
-import typing
+from typing import List, Tuple
 
 import numpy as np
 
-_Circuit: typing.TypeAlias = list[tuple[str, list[int]]]
+_Circuit = List[Tuple[str, List[int]]]
 
 
 def entangling_depth(circ: _Circuit) -> int:

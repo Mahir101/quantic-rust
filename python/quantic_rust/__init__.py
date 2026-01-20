@@ -10,7 +10,7 @@ Algorithms are based on papers:
   by T. Goubault de Brugère, and S. Martiel
 """
 
-import typing
+from typing import List, Tuple, Union, Any
 
 import networkx as nx
 
@@ -39,7 +39,7 @@ __all__ = [
     "extract_rotations",
 ]
 
-_Circuit: typing.TypeAlias = list[tuple[str, list[int]]]
+_Circuit = List[Tuple[str, List[int]]]
 
 
 def pauli_network_synthesis(
@@ -195,8 +195,8 @@ def clifford_synthesis(
 
 
 def extract_rotations(
-    circuit: list[
-        typing.Union[tuple[str, list[int]], tuple[str, list[int], typing.Any]]
+    circuit: List[
+        Union[Tuple[str, List[int]], Tuple[str, List[int], Any]]
     ],
     optimize: bool = True,
 ):
