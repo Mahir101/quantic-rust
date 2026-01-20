@@ -251,7 +251,7 @@ pub fn tableau_mul(t1: Vec<(bool, String)>, t2: Vec<(bool, String)>) -> Vec<(boo
 }
 
 #[pymodule]
-fn rustiq(_py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
+fn quantic_rust(_py: Python<'_>, m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(pauli_network_synthesis, m)?)?;
     m.add_function(wrap_pyfunction!(graph_state_synthesis, m)?)?;
     m.add_function(wrap_pyfunction!(stabilizer_state_synthesis, m)?)?;

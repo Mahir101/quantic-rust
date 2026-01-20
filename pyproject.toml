@@ -1,0 +1,53 @@
+[build-system]
+requires = ["maturin>=1.4,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "quantic-rust"
+version = "0.1.0"
+description = "High-Performance Quantum Computing Library in Rust with Python bindings"
+readme = "README.md"
+license = {file = "LICENSE.txt"}
+requires-python = ">=3.9"
+keywords = ["quantum", "computing", "qiskit", "cirq", "rust", "pyo3", "quantum-computing", "quantum-algorithms"]
+authors = [
+    {name = "Mahir Labib", email = "mdmahirlabib@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Rust",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "networkx>=3.0",
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "maturin>=1.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/Mahir101/quantic-rust"
+Repository = "https://github.com/Mahir101/quantic-rust"
+Documentation = "https://github.com/Mahir101/quantic-rust#readme"
+
+[tool.maturin]
+# Build configuration
+features = ["pyo3/extension-module"]
+python-source = "python"
+module-name = "quantic_rust.quantic_rust"
+strip = true

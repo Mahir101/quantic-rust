@@ -154,7 +154,7 @@ sequenceDiagram
     participant User as 👤 User
     participant API as 🔌 API Layer
     participant Synth as 🔧 Synthesis
-    participant Opt as ⚡ Optimizer
+    participant Optim as ⚡ Optimizer
     participant EC as 🛡️ Error Correction
     participant HW as 🖥️ Hardware
     
@@ -165,11 +165,11 @@ sequenceDiagram
     Synth-->>API: Raw Circuit
     deactivate Synth
     
-    API->>Opt: Optimize Circuit
-    activate Opt
-    Note over Opt: ZX-Calculus<br/>T-Count Reduction<br/>Commutation
-    Opt-->>API: Optimized Circuit
-    deactivate Opt
+    API->>Optim: Optimize Circuit
+    activate Optim
+    Note over Optim: ZX-Calculus<br/>T-Count Reduction<br/>Commutation
+    Optim-->>API: Optimized Circuit
+    deactivate Optim
     
     API->>EC: Apply Error Correction
     activate EC
@@ -359,19 +359,19 @@ flowchart TB
     end
     
     subgraph Estimation["2️⃣ Phase Estimation"]
-        PE[Apply QPE with e^(iAt)]
+        PE["Apply QPE with e&#94;iAt"]
         PE --> EIGEN["|λ⟩ eigenvalue register"]
     end
     
     subgraph Rotation["3️⃣ Controlled Rotation"]
-        EIGEN --> ROT[R_y(arcsin(C/λ))]
+        EIGEN --> ROT["Ry arcsin C/λ"]
         ROT --> ANC["|flag⟩ ancilla"]
     end
     
     subgraph Inverse["4️⃣ Inverse & Measurement"]
         ANC --> IQPE[Inverse QPE]
-        IQPE --> MEAS[Measure flag = |1⟩]
-        MEAS --> RESULT["|x⟩ = A⁻¹|b⟩"]
+        IQPE --> MEAS["Measure flag &#61; |1⟩"]
+        MEAS --> RESULT["|x⟩ &#61; A⁻¹|b⟩"]
     end
     
     Preparation --> Estimation
@@ -969,25 +969,25 @@ flowchart TB
 ```mermaid
 flowchart LR
     subgraph Classical["📊 Classical Features"]
-        X[x = (x₁, x₂, ..., xₙ)]
+        X["x &#61; x₁, x₂, ..., xₙ"]
     end
     
     subgraph Encoding["🔄 Encoding Methods"]
         subgraph Amplitude["Amplitude"]
-            AMP["|ψ⟩ = Σ xᵢ|i⟩"]
+            AMP["|ψ⟩ &#61; Σ xᵢ|i⟩"]
         end
         
         subgraph Angle["Angle"]
-            ANG["R_y(xᵢ)|0⟩"]
+            ANG["Ry xᵢ |0⟩"]
         end
         
         subgraph IQP["IQP"]
-            IQP1["ZZ(xᵢxⱼ) Interactions"]
+            IQP1["ZZ xᵢxⱼ Interactions"]
         end
     end
     
     subgraph Quantum["⚛️ Quantum State"]
-        QS["|φ(x)⟩"]
+        QS["|φ x⟩"]
     end
     
     Classical --> Encoding --> Quantum
