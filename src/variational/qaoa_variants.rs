@@ -197,7 +197,7 @@ impl QAOA {
 
     /// Applies the cost unitary for MaxCut
     fn apply_cost_unitary(&self, amplitudes: &[f64], gamma: f64) -> Vec<f64> {
-        let size = amplitudes.len();
+        let _size = amplitudes.len();
         let mut new_amps = amplitudes.to_vec();
         
         // For each basis state, apply phase based on cost

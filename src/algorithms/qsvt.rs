@@ -357,7 +357,7 @@ impl QSVT {
         for (i, &phase) in self.phases.phases.iter().enumerate() {
             // Apply phase rotation to ancilla (simulated)
             let c = phase.cos();
-            let s = phase.sin();
+            let _s = phase.sin();
             
             // Apply block encoding on even steps, its adjoint on odd steps
             if i % 2 == 0 {

@@ -20,7 +20,7 @@
 //! - Bombin (2006). "Topological Quantum Distillation"
 //! - Hastings & Haah (2021). "Dynamically Generated Logical Qubits"
 
-use std::collections::{HashMap, HashSet};
+// use std::collections::{HashMap, HashSet};
 
 /// Sparse parity check matrix representation
 #[derive(Debug, Clone)]
@@ -234,9 +234,9 @@ impl QuantumLDPCCode {
     }
 
     /// Decodes using belief propagation
-    pub fn decode_bp(&self, syndrome_x: &[bool], syndrome_z: &[bool], max_iter: usize) -> Vec<bool> {
+    pub fn decode_bp(&self, _syndrome_x: &[bool], syndrome_z: &[bool], max_iter: usize) -> Vec<bool> {
         let mut error_x = vec![false; self.num_physical];
-        let mut error_z = vec![false; self.num_physical];
+        let _error_z = vec![false; self.num_physical];
         
         // Simple bit-flip decoder (real BP is more sophisticated)
         for _iter in 0..max_iter {
@@ -306,7 +306,7 @@ impl ColorCode {
         let num_physical = 3 * layers * layers + 3 * layers + 1;
         
         // Build faces (simplified triangular structure)
-        let num_faces = layers * (layers + 1) / 2 * 3;
+        let _num_faces = layers * (layers + 1) / 2 * 3;
         let mut faces = Vec::new();
         let mut face_colors = Vec::new();
         
@@ -394,13 +394,13 @@ impl ColorCode {
     }
 
     /// Applies transversal Hadamard (permutes X↔Z)
-    pub fn transversal_hadamard(&self, state: &mut [bool]) {
+    pub fn transversal_hadamard(&self, _state: &mut [bool]) {
         // For color codes, transversal H is simply H on each qubit
         // In our simplified model, this is a no-op on classical bits
     }
 
     /// Applies transversal S gate
-    pub fn transversal_s(&self, state: &mut [bool]) {
+    pub fn transversal_s(&self, _state: &mut [bool]) {
         // S gate is transversal on color codes
     }
 

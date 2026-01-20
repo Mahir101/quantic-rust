@@ -182,7 +182,7 @@ impl IterativeAmplitudeEstimator {
     pub fn estimate_iterative(
         &self,
         target_precision: f64,
-        confidence: f64,
+        _confidence: f64,
     ) -> AmplitudeEstimationResult {
         // Number of iterations needed: O(log(1/ε))
         let num_iterations = ((1.0 / target_precision).log2().ceil() as usize).max(1);

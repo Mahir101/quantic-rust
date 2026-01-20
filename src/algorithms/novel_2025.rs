@@ -58,7 +58,7 @@ impl QuantumEchoes {
     /// The echo sequence refocuses dephasing errors while
     /// preserving desired quantum correlations.
     pub fn apply_echo_sequence(&self, state: &mut [f64]) {
-        let size = state.len();
+        let _size = state.len();
         
         for echo in 0..self.echo_depth {
             // Apply π pulses (X gates) to all qubits
@@ -230,7 +230,7 @@ impl QuantumPCA {
         // (In real QPCA, this would use quantum phase estimation)
         let mut v = vec![1.0 / (dim as f64).sqrt(); dim];
         
-        for k in 0..self.num_ancilla {
+        for _k in 0..self.num_ancilla {
             // Matrix-vector multiply
             let mut new_v = vec![0.0; dim];
             for i in 0..dim {

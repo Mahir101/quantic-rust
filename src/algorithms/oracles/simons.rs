@@ -409,7 +409,7 @@ fn solve_linear_system(constraints: &[u64], n: usize) -> u64 {
 /// ```
 pub fn simons_algorithm(oracle: &SimonsOracle, max_iterations: Option<usize>) -> u64 {
     let n = oracle.n;
-    let max_iter = max_iterations.unwrap_or(2 * n);
+    let _max_iter = max_iterations.unwrap_or(2 * n);
     
     // Collect linearly independent constraints
     let mut constraints: Vec<u64> = Vec::new();

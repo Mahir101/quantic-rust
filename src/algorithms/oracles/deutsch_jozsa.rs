@@ -349,7 +349,7 @@ pub fn create_balanced_oracle(n: usize, seed: u64) -> DeutschJozsaOracle {
     let mut s = seed;
     let mut has_one = false;
     
-    for i in 0..n {
+    for _i in 0..n {
         s = s.wrapping_mul(6364136223846793005).wrapping_add(1);
         let bit = ((s >> 33) & 1) as u8;
         secret.push(bit);

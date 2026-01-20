@@ -268,7 +268,7 @@ impl IterativeQPE {
             phase_estimate += (bit as f64) / (1 << (k + 1)) as f64;
         }
         
-        let size = 1 << self.num_iterations;
+        let _size = 1 << self.num_iterations;
         
         QPEResult {
             estimated_phase: phase_estimate,
