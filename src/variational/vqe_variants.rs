@@ -243,7 +243,7 @@ impl VQEState {
 
     /// Measures expectation of Z operator on specified qubits
     pub fn measure_z_expectation(&self, qubits: &[usize]) -> f64 {
-        let size = 1 << self.num_qubits;
+        let _size = 1 << self.num_qubits;
         let mut expectation = 0.0;
         
         for (i, &amp) in self.amplitudes.iter().enumerate() {
