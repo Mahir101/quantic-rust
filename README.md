@@ -18,6 +18,14 @@
   <em>Industry-grade quantum circuit synthesis, deep optimization, and robust error analysis</em>
 </p>
 
+<p align="center">
+  <b>Quantic-Rust</b> is a comprehensive, high-performance library designed to push the boundaries of quantum computing simulation and algorithm development. Built with the speed and safety of Rust and exposed via Python bindings, it serves as a unified platform for researchers and developers working across the full quantum stack.
+</p>
+
+<p align="center">
+  From implementing foundational algorithms like <b>Shor's</b> and <b>Grover's</b> to exploring cutting-edge <b>Variational Quantum Eigensolvers (VQE)</b> and <b>QAOA</b> variants, Quantic-Rust provides robust primitives for the NISQ era. It goes beyond standard simulation by incorporating <b>Post-Quantum Cryptography (PQC)</b> standards such as <b>ML-KEM</b> and <b>ML-DSA</b>, enabling the development of quantum-safe applications. Furthermore, the library features advanced modules for <b>Quantum Machine Learning (QML)</b>, <b>Quantum Singular Value Transformation (QSVT)</b>, and novel 2025-era breakthroughs like <b>Quantum Echoes</b>, making it a forward-looking tool for the next generation of quantum research.
+</p>
+
 ---
 
 <details open>
