@@ -520,12 +520,12 @@ impl MlDsaSecretKey {
     /// This uses the "Fiat-Shamir with Aborts" paradigm:
     /// the signing loop may iterate multiple times until
     /// a valid signature is found.
-    pub fn sign(&self, message: &[u8], randomness: u64) -> MlDsaSignature {
+    pub fn sign(&self, _message: &[u8], randomness: u64) -> MlDsaSignature {
         let level = self.level;
         let k = level.k();
         let l = level.l();
         let gamma1 = level.gamma1();
-        let gamma2 = level.gamma2();
+        let _gamma2 = level.gamma2();
         let beta = level.beta();
         let tau = level.tau();
 
@@ -546,7 +546,7 @@ impl MlDsaSecretKey {
             let y = DilithiumVector::sample_gamma1(l, nonce.wrapping_add(1000000), gamma1);
             
             // Compute w = A·y
-            let w = matrix_a.mul_vector(&y);
+            let _w = matrix_a.mul_vector(&y);
             
             // Generate challenge c (simplified hash)
             let mut c_tilde = [0u8; 32];
@@ -592,7 +592,7 @@ impl MlDsaPublicKey {
     ///
     /// # Returns
     /// `true` if the signature is valid, `false` otherwise
-    pub fn verify(&self, message: &[u8], signature: &MlDsaSignature) -> bool {
+    pub fn verify(&self, _message: &[u8], signature: &MlDsaSignature) -> bool {
         let level = self.level;
         let k = level.k();
         let l = level.l();

@@ -361,7 +361,7 @@ impl MlKemSecretKey {
 
         // Decode message from diff
         let mut m = [0u8; 32];
-        let q_quarter = MLKEM_Q / 4;
+        let _q_quarter = MLKEM_Q / 4;
         let q_half = MLKEM_Q / 2;
 
         for i in 0..32.min(MLKEM_N / 8) {

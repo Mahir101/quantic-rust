@@ -321,7 +321,7 @@ impl RingLweSecretKey {
         // Decode: check if coefficient is closer to 0 or q/2
         let coeff = diff.coeffs[0];
         let q_half = MLKEM_Q / 2;
-        let q_quarter = MLKEM_Q / 4;
+        let _q_quarter = MLKEM_Q / 4;
         
         // If |coeff - q/2| < q/4, then message was 1
         let dist_to_half = ((coeff - q_half).abs()).min((coeff - q_half + MLKEM_Q).abs());
